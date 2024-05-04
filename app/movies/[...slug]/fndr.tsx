@@ -21,6 +21,7 @@ export default function Fndr({params}: {params: any}) {
     const [minx, setMinx] = useState<number>(0)
     let c1 = false;
     let c2 = false
+    const [founnd, setFounnd] = useState<boolean>(false)
     const [details, setDetails] = useState<any>({})
     const [won, setWon] = useState<any>({})
 
@@ -90,11 +91,11 @@ export default function Fndr({params}: {params: any}) {
                 console.log(wonn.results.US.flatrate)
                 setWon(
                     wonn.results.US.flatrate
-                  );
-
+                );
+                
                 const videoResponse = await fetch(`https://api.themoviedb.org/3/movie/${res[minx].id}/videos?language=en-US`, options);
                 const videoData = await videoResponse.json();
-                setVidUr(videoData.results[0].key);
+                setVidUr(videoData.results[0].key)
             } catch (error) {
                 // console.error(error);
             }
@@ -125,41 +126,78 @@ export default function Fndr({params}: {params: any}) {
           document.removeEventListener('keydown', handleKeyPress);
         };
       }, []);
+
+    //   useEffect(() => {
+    //     const options = {
+    //         method: 'GET',
+    //         headers: {
+    //           accept: 'application/json',
+    //           Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyOGU0YzRkODIxYWYxYzMxZjkzNGZkOTA2ZGI4MzZjNSIsInN1YiI6IjY2MjJkM2UzMDQ0M2M5MDE4Nzc3NmE2MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.SDFzwnkZDsUzCud3TjsSES6lDrhE_1Zh06mnr8icrTs'
+    //         }
+    //       };
+
+    //     const yyy = async () => {
+    //         try {
+    //             const detailss = await fetch(`https://api.themoviedb.org/3/movie/${res[minx].id}?language=en-US`, options)
+    //             const ddta = await detailss.json()
+    //             setDetails(ddta)
+    //         } catch(e) {
+    //             console.log(e)
+    //         }
+    //     }
+    //     yyy()
+    //   },[founnd])
+
+    useEffect(() => {
+        setTimeout(() => {
+            setFounnd(true)
+        },1700)
+    },[setVidUr])
     
     return (
-    <div className="md:w-1/2 w-11/12 p-3 px-6 min-h-[90vh] h-max max-h-max bg-neutral-800/75 mb-4 rounded-xl relative flex justify-start items-start flex-col">
-        
-        <button onClick={() => setMinx(prevM => prevM + 1)} className='w-8 h-8 bg-red-500 rounded-xl text-center absolute top-1/2 left-[92%] hover:scale-105 transition-all'>🢂</button>
-       
-        <a
-        href="/"
-        className="absolute top-0 left-0 bg-red-700 text-white p-1 aspect-square h-8 text-center font-extrabold rounded m-2"
-      >
-        ⇐
-      </a>
-        
-        <span className="text-3xl mb-2 mx-auto w-1/2 text-center">{res[minx].title}</span>
-        <iframe src={`https://www.youtube.com/embed/${vidUr}`} frameBorder="0" className='w-3/4 mx-auto aspect-video rounded-2xl bg-black mb-3'></iframe>
-        <span>| Released: {details?.release_date?.slice(0,4) || ""} | Runtime: {mintoHM(details.runtime)} | </span>
-        <div className='w-full flex p-2'>
-            <div className={`${Array.isArray(won)? 'w-2/3': 'w-full'} min-h-48 h-max p-3 max-h-full overflow-y-auto`}>
-                <span className='min-h-32 h-[25rem] md:h-[15rem] overflow-y-auto block'>{details.overview}</span>
-            </div>
+        <div className='w-screen overscroll-x-none flex justify-center items-center'>
+        {founnd? (
+            <div className="md:w-1/2 w-11/12 p-3 px-6 min-h-[90vh] h-max max-h-max bg-neutral-800/75 mb-4 rounded-xl relative flex justify-start items-start flex-col">
+                
+                <button onClick={() => setMinx(prevM => prevM + 1)} className='w-8 h-8 bg-red-500 rounded-xl text-center absolute top-1/2 left-[92%] hover:scale-105 transition-all'>🢂</button>
+            
+                <a
+                href="/"
+                className="absolute top-0 left-0 bg-red-700 text-white p-1 aspect-square h-8 text-center font-extrabold rounded m-2"
+            >
+                ⇐
+            </a>
+                
+                <span className="text-3xl mb-2 mx-auto w-1/2 text-center">{res[minx].title}</span>
+                <iframe src={`https://www.youtube.com/embed/${vidUr}`} frameBorder="0" className='w-3/4 mx-auto aspect-video rounded-2xl bg-black mb-3'></iframe>
+                <span>| Released: {details?.release_date?.slice(0,4) || ""} | Runtime: {mintoHM(details.runtime)} | </span>
+                <div className='w-full flex p-2'>
+                    <div className={`${Array.isArray(won)? 'w-2/3': 'w-full'} min-h-48 h-max p-3 max-h-full overflow-y-auto`}>
+                        <span className='min-h-32 h-[25rem] md:h-[15rem] overflow-y-auto block'>{details.overview}</span>
+                    </div>
 
-            {Array.isArray(won) ? (
-            <div className="w-1/3 min-h-max md:h-[25rem] h-[35rem] flex flex-col justify-start items-center pl-2">
-                <span>Watch On:</span>
-                <ul className='h-1/2 overflow-y-auto'>
                     {Array.isArray(won) ? (
-                        won.map((item:any, index:any) => (
-                        <li key={index}><span key={index}>• {item.provider_name}</span></li>
-                        ))
-                    ) : (
-                        <span>Nothing in our list/In your reigon</span>
-                    )}
-                </ul>
-            </div>) : (<div></div>)}
-        </div>
+                    <div className="w-1/3 min-h-max md:h-[25rem] h-[35rem] flex flex-col justify-start items-center pl-2">
+                        <span>Watch On:</span>
+                        <ul className='h-1/2 overflow-y-auto'>
+                            {Array.isArray(won) ? (
+                                won.map((item:any, index:any) => (
+                                <li key={index}><span key={index}>• {item.provider_name}</span></li>
+                                ))
+                            ) : (
+                                <span>Nothing in our list/In your reigon</span>
+                            )}
+                        </ul>
+                    </div>) : (<div></div>)}
+                </div>
+            </div>) : (
+                <div className='flex justify-center items-center h-[90vh] flex-col'>
+                    <span>AI is searching!...</span>
+                    <svg height="100" width="100" xmlns="http://www.w3.org/2000/svg" className='animate-ping'>
+                        <circle r="45" cx="50" cy="50" fill="red" />
+                    </svg>
+                </div>
+            )}
     </div>
     )
 }

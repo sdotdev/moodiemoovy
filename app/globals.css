@@ -5,6 +5,7 @@
 body {
   color: white;
   background-color: rgba(3, 4, 4, 1);
+  overflow-x: hidden;
 }
 
 @layer utilities {

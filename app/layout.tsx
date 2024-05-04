@@ -26,6 +26,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+      </head>
       <PHProvider>
         <body className={vr.className}>
           <div className="bg-[url('/img/landbck.jpg')] fixed -z-10 w-screen min-h-screen h-full bg-cover opacity-10 blur-md bg-repeat"></div>
