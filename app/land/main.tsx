@@ -3,7 +3,10 @@ import MDOPT from "./mdopt"
 export default function Main() {
     return (
         <div className="h-screen w-full flex justify-center items-center flex-col gap-2 p-4">
-            <span className="font-semibold text-4xl bg-neutral-900/50 p-4 mb-8 rounded-lg shadow-black shadow-lg">MoodieMoovy - Forget Choosing</span>
+            <span className="font-semibold text-4xl bg-neutral-900/50 p-4 mb-8 rounded-lg shadow-black shadow-lg flex gap-1 justify-evenly items-center">
+                <img src="/img/logo.png" className="w-8 aspect-square"/>
+                <span>MoodieMoovy - Forget Choosing</span>
+            </span>
             <span className="font-semibold text-2xl">What Time is It</span>
             <MDOPT/>
 
