@@ -32,11 +32,15 @@ export default function MDOPT() {
     }
 
     return (<>
-        <div className="flex justify-center items-center gap-2">
-            <span>A(n) </span>
-            <Moods c={0} oc={mood} ovc={setMood}/>
-            <Moods c={1} oc={day} ovc={setDay}/>
-            <Moods c={2} oc={time} ovc={setTime}/>
+        <div className="flex justify-center items-center gap-2 flex-col text-center md:flex-row">
+            <div className="md:block flex justify-center items-center flex-col gap-2">
+                <span>A(n) </span>
+                <Moods c={0} oc={mood} ovc={setMood}/>
+            </div>
+            <div className="md:block flex justify-center items-center flex-col gap-2">
+                <Moods c={1} oc={day} ovc={setDay}/>
+                <Moods c={2} oc={time} ovc={setTime}/>
+            </div>
         </div>
         {mood && day && time? (
                     <span>Chosen: {ifcv(mood)? "An" : "A"} {cfl(mood)}, {cfl(day)} {cfl(time)}</span>

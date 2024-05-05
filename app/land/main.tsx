@@ -7,7 +7,7 @@ export default function Main() {
                 <img src="/img/logo.png" className="w-8 aspect-square"/>
                 <span>MoodieMoovy - Forget Choosing</span>
             </span>
-            <span className="font-semibold text-2xl">What Time is It</span>
+            <span className="font-semibold text-2xl">What Time is It?</span>
             <MDOPT/>
 
             <span className="mt-12">Made with <a href="https://tmdb.org" className="underline" target="_blank">TMDB</a> & <a href="https://www.justwatch.com/" className="underline" target="_blank">JustWatch</a> by <a href="https://www.tiktok.com/@sdotdev" target="_blank" className="text-semibold underline text-red-600">sdotdev</a></span>
