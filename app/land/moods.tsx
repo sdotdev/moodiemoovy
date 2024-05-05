@@ -42,7 +42,7 @@ import {
 //   },
 // ]
 
-export function Moods({c, oc, ovc}:{c:number, oc:string, ovc: ((arg0:string) => void)}) {
+export function Moods({c, oc, ovc, className=""}:{c:number, oc:string, ovc: ((arg0:string) => void), className:string}) {
     const [open, setOpen] = React.useState(false)
     const [value, setValue] = React.useState("")
     const frameworks = cs[c].opts
@@ -53,7 +53,7 @@ export function Moods({c, oc, ovc}:{c:number, oc:string, ovc: ((arg0:string) => 
           <Button
             role="combobox"
             aria-expanded={open}
-            className="w-[200px] justify-between"
+            className={`w-[200px] justify-between ${className}`}
           >
             {oc
               ? frameworks?.find((framework) => framework.value === oc)?.label

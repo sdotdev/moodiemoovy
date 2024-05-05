@@ -38,7 +38,7 @@ export default function MDOPT() {
                 <Moods c={0} oc={mood} ovc={setMood}/>
             </div>
             <div className="md:block flex justify-center items-center flex-col gap-2">
-                <Moods c={1} oc={day} ovc={setDay}/>
+                <Moods c={1} oc={day} ovc={setDay} className="mr-2"/>
                 <Moods c={2} oc={time} ovc={setTime}/>
             </div>
         </div>
