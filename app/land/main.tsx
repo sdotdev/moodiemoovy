@@ -1,4 +1,5 @@
 import MDOPT from "./mdopt"
+import Socials from "./socials"
 
 export default function Main() {
     return (
@@ -10,7 +11,12 @@ export default function Main() {
             <span className="font-semibold text-2xl">What Time is It?</span>
             <MDOPT/>
 
-            <span className="mt-12">Made with <a href="https://tmdb.org" className="underline" target="_blank">TMDB</a> & <a href="https://www.justwatch.com/" className="underline" target="_blank">JustWatch</a> by <a href="https://www.tiktok.com/@sdotdev" target="_blank" className="text-semibold underline text-red-600">sdotdev</a></span>
+            <div className="mt-12 flex gap-1">Made with <a href="https://tmdb.org" className="underline" target="_blank">TMDB</a> & <a href="https://www.justwatch.com/" className="underline" target="_blank">JustWatch</a> by 
+                <div className="relative">
+                    <div className="hidden md:block absolute -top-[6.65rem] -right-[6.65rem] bg-[url('/img/socialsA.png')] w-[7.25rem] h-[7.25rem] bg-contain invert"></div>
+                    <Socials/>
+                </div>
+            </div>
         </div>
     )
 }
