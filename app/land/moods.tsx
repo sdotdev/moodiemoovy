@@ -42,7 +42,7 @@ import {
 //   },
 // ]
 
-export function Moods({c, oc, ovc, className=""}:{c:number, oc:string, ovc: ((arg0:string) => void), className:string}) {
+export function Moods({c, oc, ovc, className=""}:{c:number, oc:string, ovc: ((arg0:string) => void), className?:string}) {
     const [open, setOpen] = React.useState(false)
     const [value, setValue] = React.useState("")
     const frameworks = cs[c].opts
