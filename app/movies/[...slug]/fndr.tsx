@@ -176,7 +176,7 @@ export default function Fndr({params}: {params: any}) {
                         <span className='min-h-32 h-[25rem] md:h-[15rem] overflow-y-auto block'>{details.overview}</span>
                     </div>
 
-                    {false ? (
+                    {Array.isArray(won) ? (
                     <div className="w-1/3 min-h-max md:h-[25rem] h-[35rem] flex flex-col justify-start items-center pl-2">
                         <span>Watch On:</span>
                         <ul className='h-1/2 overflow-y-auto'>
