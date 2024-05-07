@@ -149,11 +149,11 @@ const cs = [
 ]
 
 const provdlbls = [
-    {label: "Amazon (Prime) Video", value:"Amazon Video,Amazon Prime Video,"},
-    {label: "Netflix", value:"Netflix,"},
-    {label: "Apple TV", value:"Apple TV,"},
-    {label: "Hulu", value:"Hulu,"},
-    {label: "Sky GO", value:"Sky Go,"},
-    {label: "WOW", value:"WOW,"},
-    {label: "BBC iPlayer", value:"BBC iPlayer,"},
+    {label: "Amazon (Prime) Video", value:"10,9,"},
+    {label: "Netflix", value:"8,"},
+    {label: "Apple TV", value:"2,350,"},
+    {label: "Hulu", value:"15,"},
+    {label: "Sky GO", value:"29,"},
+    {label: "WOW", value:"30,"},
+    {label: "BBC iPlayer", value:"38,"},
 ]

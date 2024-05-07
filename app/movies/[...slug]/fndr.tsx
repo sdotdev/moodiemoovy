@@ -39,7 +39,7 @@ export default function Fndr({params}: {params: any}) {
     
             try {
                 // Fetch movie data
-                const movieResponse = await fetch(`https://api.themoviedb.org/3/discover/movie?language=en-US&include_video=true&page=1&sort_by=popularity.desc&with_genres=${hh.join(",")}&with_watch_providers=${localStorage.getItem("providersmoodiemoovy")}&with_reigon=${localStorage.getItem("reigonmoodiemoovy")}`, options);
+                const movieResponse = await fetch(`https://api.themoviedb.org/3/discover/movie?language=en-US&include_video=true&page=1&sort_by=popularity.desc&with_genres=${hh.join(",")}&with_watch_providers=${localStorage.getItem("providersmoodiemoovy")}&watch_region=${localStorage.getItem("reigonmoodiemoovy")}`, options);
                 const movieData = await movieResponse.json();
                 // console.log(movieData);
                 
