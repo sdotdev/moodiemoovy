@@ -39,7 +39,7 @@ export default function Fndr({params}: {params: any}) {
     
             try {
                 // Fetch movie data
-                const movieResponse = await fetch(`https://api.themoviedb.org/3/discover/movie?language=en-US&include_video=true&page=1&sort_by=popularity.desc&with_genres=${hh.join(",")}`, options);
+                const movieResponse = await fetch(`https://api.themoviedb.org/3/discover/movie?language=en-US&include_video=true&page=1&sort_by=popularity.desc&with_genres=${hh.join(",")}&with_watch_providers=${localStorage.getItem("providersmoodiemoovy")}&with_reigon=${localStorage.getItem("reigonmoodiemoovy")}`, options);
                 const movieData = await movieResponse.json();
                 // console.log(movieData);
                 
@@ -176,7 +176,7 @@ export default function Fndr({params}: {params: any}) {
                         <span className='min-h-32 h-[25rem] md:h-[15rem] overflow-y-auto block'>{details.overview}</span>
                     </div>
 
-                    {Array.isArray(won) ? (
+                    {false ? (
                     <div className="w-1/3 min-h-max md:h-[25rem] h-[35rem] flex flex-col justify-start items-center pl-2">
                         <span>Watch On:</span>
                         <ul className='h-1/2 overflow-y-auto'>

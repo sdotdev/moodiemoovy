@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button"
 import { Moods } from "./moods"
 import React, { useEffect, useState } from 'react'
 import { useRouter } from "next/navigation"
+import { Checkbox } from "@/components/ui/checkbox"
+import { UserRegion } from "./userRegion"
 
 export default function MDOPT() {
     const [mood, setMood] = useState("")
@@ -11,8 +13,18 @@ export default function MDOPT() {
     const [time, setTime] = useState("")
     const router = useRouter()
 
+    let chosenprvdrs = Array(provdlbls.length).fill(false)
+
     const fnd = () => {
         if (day && time && mood) {
+            let provsstr = ""
+            chosenprvdrs.forEach((val:string, index:number) => {
+                if (val) {
+                    provsstr += provdlbls[index].value
+                }
+            })
+            provsstr = provsstr.slice(0, -1);
+            localStorage.setItem("providersmoodiemoovy", provsstr)
             router.replace(`/movies/${mood}/${day}/${time}`)
         }
     }
@@ -26,6 +38,14 @@ export default function MDOPT() {
         const randomMood = cs[0].opts[randomIndexMood].value;
         const randomDay = cs[1].opts[randomIndexDay].value;
         const randomTimeOfDay = cs[2].opts[randomIndexTimeOfDay].value;
+        let provsstr = ""
+            chosenprvdrs.forEach((val:string, index:number) => {
+                if (val) {
+                    provsstr += provdlbls[index].value
+                }
+            })
+            provsstr = provsstr.slice(0, -1);
+            localStorage.setItem("providersmoodiemoovy", provsstr)
 
         router.push(`/movies/${randomMood}/${randomDay}/${randomTimeOfDay}`)
 
@@ -47,6 +67,29 @@ export default function MDOPT() {
         ): (
             <span className="opacity-75">e.g A nostalgic, friday afternoon</span>
         )}
+
+        <div>
+            <span className="text-3xl">Select your providers and region:</span>
+            <div className="flex gap-5">
+                <div className="w-full flex flex-col gap-[0.125rem] my-2 pl-12">
+                    {provdlbls.map((item, index) => (
+                        <div className={`flex items-center space-x-2 ${index%2==0? "-ml-2" : ""}`} key={index}>
+                            <Checkbox id={`prv${index}`} defaultChecked={false} onCheckedChange={(cc:boolean) => { chosenprvdrs[index] = cc }}/>
+                            <label
+                            htmlFor={`prv${index}`}
+                            className="text-md font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                            {item.label}
+                            </label>
+                    </div>
+                    ))}
+                </div>
+                <div>
+                    <UserRegion/>
+                </div>
+            </div>
+        </div>
+
         <Button onClick={fnd} className="bg-red-700">Find!</Button>
         <span>OR</span>
         <button onClick={grs} className='bg-gray-700 p-2 rounded-2xl'>Random Selections</button>
@@ -103,4 +146,14 @@ const cs = [
             { value: "late-night", label: "Late Night" }
         ]
     }
+]
+
+const provdlbls = [
+    {label: "Amazon (Prime) Video", value:"Amazon Video,Amazon Prime Video,"},
+    {label: "Netflix", value:"Netflix,"},
+    {label: "Apple TV", value:"Apple TV,"},
+    {label: "Hulu", value:"Hulu,"},
+    {label: "Sky GO", value:"Sky Go,"},
+    {label: "WOW", value:"WOW,"},
+    {label: "BBC iPlayer", value:"BBC iPlayer,"},
 ]
